@@ -1,7 +1,7 @@
 import React from 'react'
 import '../style.css';
-import Content from "./Content";
-class Box extends React.Component{
+import ContentComponents from "./ContentComponents";
+class BoxComponents extends React.Component{
     nro=0;
     constructor(){
         super();
@@ -38,7 +38,7 @@ class Box extends React.Component{
 
                     <div className={this.state.tbox +(i+1)}>
                         <div className="box-style box-style01">
-                            <Content product={product}/>
+                            <ContentComponents product={product}/>
                         </div>
                     </div>
                 )}
@@ -48,4 +48,4 @@ class Box extends React.Component{
 
 }
 
-export default Box
+export default BoxComponents

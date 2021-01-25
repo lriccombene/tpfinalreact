@@ -1,6 +1,6 @@
 import React from 'react'
 import '../style.css';
-class Page extends React.Component{
+class PageComponents extends React.Component{
     render(){
         return (
             <div id="page" className="container">
@@ -18,4 +18,4 @@ class Page extends React.Component{
 
 }
 
-export default Page
+export default PageComponents

@@ -1,6 +1,6 @@
 import React from 'react'
 import '../style.css';
-class Content extends React.Component{
+class ContentComponents extends React.Component{
     constructor(){
         super();
         this.state= {
@@ -27,4 +27,4 @@ class Content extends React.Component{
 
 }
 
-export default Content
+export default ContentComponents

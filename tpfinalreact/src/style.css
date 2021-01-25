@@ -177,7 +177,7 @@ a:hover {
 	color: #000000;
 }
 
-/* Menu */
+/* MenuComponents */
 
 #menu-wrapper {
 	overflow: hidden;
@@ -227,14 +227,14 @@ a:hover {
 #menu .current_page_item a {
 }
 
-/* Page */
+/* PageComponents */
 
 #page {
 	overflow: hidden;
 	padding: 20px 20px 40px 20px;
 }
 
-/* Content */
+/* ContentComponents */
 
 #content {
 	float: left;
@@ -360,7 +360,7 @@ a:hover {
 	text-align: right;
 }
 
-/* Three Column Footer Content */
+/* Three Column Footer ContentComponents */
 
 #footer-bg {
 	overflow: hidden;
@@ -477,7 +477,7 @@ a:hover {
 	/*background: url(images/img04.png) no-repeat center bottom;*/
 }
 
-/* Three Column Content */
+/* Three Column ContentComponents */
 
 #three-column {
 	overflow: hidden;

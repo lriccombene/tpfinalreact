@@ -1,6 +1,6 @@
 import React from 'react'
 import '../style.css';
-class Box2 extends React.Component{
+class Box2Components extends React.Component{
     render(){
         return (
             <div id="three-column" className="container">
@@ -43,4 +43,4 @@ class Box2 extends React.Component{
 
 }
 
-export default Box2
+export default Box2Components
