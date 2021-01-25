@@ -5,11 +5,11 @@ import {BrowserRouter,Route} from "react-router-dom";
 //import './App.css';
 import '../style.css';
 
-import MenuComponents from "../Components/MenuComponents";
+import MenuComponents from "../Components/MenuComponents/MenuComponents";
 import Logo from "../Components/Logo";
 import PageComponents from "../Components/PageComponents";
-import BoxComponents from "../Components/BoxComponents.js";
-import Box2Components from "../Components/Box2Components";
+import BoxComponents from "../Components/BoxComponents/BoxComponents.js";
+import Box2Components from "../Components/BoxComponents/Box2Components";
 
 
 class HomePage extends Component{

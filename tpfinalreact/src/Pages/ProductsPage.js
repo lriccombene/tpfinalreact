@@ -1,17 +1,17 @@
 import React from 'react'
 import '../style.css';
-import MenuComponents from "../Components/MenuComponents";
+import MenuComponents from "../Components/MenuComponents/MenuComponents";
 import Logo from "../Components/Logo";
-class ProductsPage extends React.Component{
-    render(){
+function ProductsPage (){
+
         return (
             <div id="wrapper">
                 <MenuComponents />
                 <Logo />
-                <div>Products Estamos en Login</div>
+                <div>Pagina Productos Page</div>
             </div>
         )
-    }
+
 
 }
 

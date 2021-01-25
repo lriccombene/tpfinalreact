@@ -1,5 +1,6 @@
 import React from 'react'
-import '../style.css';
+import '../../style.css';
+import {Link} from "react-router-dom";
 class ContentComponents extends React.Component{
     constructor(){
         super();
@@ -20,11 +21,11 @@ class ContentComponents extends React.Component{
                 <div className="image"><img src="images/img01.jpg" width="324" height="200" alt=""/></div>
                 <h2>{this.props.product.name}</h2>
                 <p>{this.props.product.description}</p>
-                <a  className="button" onClick={this.handleClickDetalle}>Detalle</a>
+                <Link  to={'/products/'+ this.props.product._id} className="button" >Detalle</Link>
             </div>
         )
     }
 
-}
 
+}
 export default ContentComponents

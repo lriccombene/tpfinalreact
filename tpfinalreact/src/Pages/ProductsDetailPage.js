@@ -2,17 +2,18 @@ import React from 'react'
 import '../style.css';
 import MenuComponents from "../Components/MenuComponents/MenuComponents";
 import Logo from "../Components/Logo";
-class ContactPage extends React.Component{
-    render(){
+function ProductsDetailPage (props){
+
         return (
             <div id="wrapper">
                 <MenuComponents />
                 <Logo />
-                <div>Contact Estamos en Login</div>
+                <div>Products Details Estamos
+                         {props.match.params.id}</div>
             </div>
         )
-    }
+
 
 }
 
-export default ContactPage
+export default ProductsDetailPage

@@ -1,9 +1,9 @@
 import React from 'react'
 import '../style.css';
-import MenuComponents from "../Components/MenuComponents";
+import MenuComponents from "../Components/MenuComponents/MenuComponents";
 import Logo from "../Components/Logo";
-class LoginPage extends React.Component{
-    render(){
+function LoginPage (){
+
         return (
             <div id="wrapper">
                 <MenuComponents />
@@ -11,7 +11,7 @@ class LoginPage extends React.Component{
                 <div>Login Estamos en Login</div>
             </div>
         )
-    }
+
 
 }
 
