@@ -1,32 +1,41 @@
 import React from 'react'
 import '../../style.css';
+
+import axios from 'axios';
 import ContentComponents from "./ContentComponents";
+
+const api = axios.create({
+    baseURL:'http://localhost:3000/products',
+
+
+})
+
 class BoxComponents extends React.Component{
     nro=0;
+    state = {
+        products: []
+    }
+
+
     constructor(){
         super();
         this.state={
-                products:[{
-                            _id:1,
-                            name:'Manzanas 2 KG $250',
-                            description:'Manzanas de estacion Rojas oferta $150 x kg'
-                          },
-                          {
-                              _id:2,
-                              name : 'Heineken Pack 750cc $600',
-                              description:'Cerveza en Lata  Pack x 6 Precio por por unidad $130 '
-                          },
-                          {
-                              _id:3,
-                              name:'Fideos Don Vicente $100',
-                              description:'Fideos al HUevo por 500 gr '
-                          }],
-                tbox:'tbox',
+            products:[],
+            tbox:'tbox',
 
 
         }
 
+
     }
+    componentDidMount() {
+        axios.get('https://localhost:3000/products').then(res=>{
+            console.log(res)
+            this.state.products({products:res.data});
+        })
+    }
+
+
     handleClickDetalle = ()=>{
         this.nro = this.nro+1;
     }
@@ -38,7 +47,7 @@ class BoxComponents extends React.Component{
 
                     <div className={this.state.tbox +(i+1)}>
                         <div className="box-style box-style01">
-                            <ContentComponents product={product}/>
+                            <ContentComponents product={this.state.product}/>
                         </div>
                     </div>
                 )}
