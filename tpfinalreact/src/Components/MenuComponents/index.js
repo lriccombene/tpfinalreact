@@ -35,7 +35,7 @@ class MenuComponents extends Component{
                       <>
                         <OptionComponents key="home" option={{label:"Incio",path:"/"}} />
                         <OptionComponents key="home" option={{label:"ABM Categoria",path:"/categorias"}} />
-                        <OptionComponents key="home" option={{label:"ABM Productos",path:"/productos"}} />
+                        <OptionComponents key="home" option={{label:"ABM Productos",path:"/productosabm"}} />
                         <OptionComponents key="home" option={{label:"Contacto",path:"/contact"}} />
 
 
