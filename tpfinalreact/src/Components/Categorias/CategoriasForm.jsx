@@ -1,14 +1,20 @@
-import React, { Component } from 'react'
+import React, {Component, useState} from 'react'
 import { Redirect } from 'react-router'
 import { Container, Row, Col, Alert, Button, Form, FormGroup, Label, Input } from 'reactstrap'
+
+import AlertCustom from "../AlertCustom";
 
 const Api = require('./Api.js')
 
 class CategoriasForm extends Component {
   constructor(props) {
     super(props)
+    //  const [loading,setLoading] = useState(false);
 
     this.state = {
+      alert:{
+        variant:"",text:""
+    },
       categoria: {
         _id: this.getCategoriaId(props),
         name: '',
@@ -43,27 +49,39 @@ class CategoriasForm extends Component {
     })
   }
 
-  handleSubmit(event) {
-    event.preventDefault()
 
-    let categoria = {
-      name: this.state.categoria.name,
-    }
-
-    Api.saveCategoria(categoria, this.state.categoria.id)
-      .then(response => {
-        const [error, errors] = response
-        if (error) {
-          this.setState({
-            errors: errors
-          })
-        } else {
-          this.setState({
-            redirect: '/categoria'
-          })
-        }
-      })
+   handleSubmit (e){
+    //setLoading(true)
+    //console.log(form);
+     let categoria = {
+       name: this.state.categoria.name,
+     }
+     console.log(categoria)
+     Api.saveCategoria(categoria)
+        .then(data=>{
+              //console.log('grabo okey')
+          if(data.data){
+            console.log('grabo okey')
+            this.setState({
+              alert:{
+                variant:"success",
+                text:"La categoria se grabo correctamente"
+              }
+            })
+            //history.push("/")
+          }else{
+            this.setState({
+              alert:{
+                variant:"danger",
+                text:"ERROR"
+              }
+            })
+          }
+        })
+    e.preventDefault()
   }
+
+
 
   componentDidMount() {
     if (this.state.categoria._id) {
@@ -117,8 +135,10 @@ class CategoriasForm extends Component {
 
                 <Button color="success">Guardar</Button>
               </Form>
+
             </Col>
           </Row>
+          <AlertCustom variant={this.state.alert.variant} text={this.state.alert.text} />
         </Container>
       )
     }

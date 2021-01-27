@@ -7,7 +7,9 @@ class CategoriasDelete extends Component {
     super(props)
     console.log(props.match.params.id);
     this.state = {
-
+      alert:{
+        variant:"",text:""
+      },
       id: props.match.params.id,
       redirect: null
     }
@@ -15,28 +17,28 @@ class CategoriasDelete extends Component {
 
   componentDidMount() {
     Api.deleteCategorias(this.state.id)
-      .then(response => {
-        const [error] = response
-        if (error) {
-          // TODO: set flash
-        }
-        this.setState({
-          redirect: '/categorias'
+        .then(data=>{
+          //console.log('borro okey')
+          if(data.data){
+            console.log('borro okey')
+
+
+            //history.push("/")
+          }else{
+            console.log('borro OUT')
+
+          }
         })
-      })
   }
 
   render() {
-    if (this.state.redirect) {
+
       return (
-        <Redirect to={this.state.redirect} />
-      )
-    } else {
-      return (
-        <div></div>
+
+        <Redirect  to='/categorias' />
       )
     }
-  }
+
 
 }
 

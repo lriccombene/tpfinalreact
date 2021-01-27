@@ -6,6 +6,10 @@ export const getCategoria = (id)=>{
     
     return instance.get("/categories/"+id);
 }
+export const getDelete = (id)=>{
+
+    return instance.delete("/categories/"+id);
+}
 export const create = (data)=>{
     return instance.post("/categories/",data)
 }

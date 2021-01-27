@@ -1,12 +1,15 @@
+
+import instance from "../../Config/axios";
+
 const apiHost = 'http://localhost:3000'
 
 // TODO: base posts url
 
-const capitalizeFirstLetter = (string) => {
+export const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
-const collectErrors = (response) => {
+export const collectErrors = (response) => {
   let errors = []
 
   if (response.status === 404) {
@@ -24,7 +27,12 @@ const collectErrors = (response) => {
   return errors
 }
 
-const deleteCategorias = (id) => {
+export const deleteCategorias = (id)=>{
+
+  return instance.delete("/categories/"+id);
+}
+
+export const deleteCategorias2 = (id) => {
   let response_ok = null
   return fetch(`${apiHost}/api/categories/${id}`, {
     method: 'delete',
@@ -49,7 +57,7 @@ const deleteCategorias = (id) => {
   })
 }
 
-const getCategorias = () => {
+export const getCategorias = () => {
   let response_ok = null
   return fetch(`${apiHost}/categories`, {
       method: 'get',
@@ -70,7 +78,7 @@ const getCategorias = () => {
     })
 }
 
-const getCategoria = (id) => {
+export const getCategoria = (id) => {
   let response_ok = null
   return fetch(`${apiHost}/categories/${id}`, {
     method: 'get',
@@ -90,8 +98,11 @@ const getCategoria = (id) => {
     }
   })
 }
+export const saveCategoria = (data)=>{
 
-const saveCategoria = (data, id=null) => {
+  return  instance.post("/categories/",data)
+}
+export const saveCategoria2 = (data, id=null) => {
   let apiUrl = `${apiHost}/categories`
   let apiMethod = 'categories'
   if (id) {
@@ -123,10 +134,11 @@ const saveCategoria = (data, id=null) => {
     }
   })
 }
-
+/*
 module.exports = {
   saveCategoria: saveCategoria,
   getCategoria: getCategoria,
   deleteCategorias: deleteCategorias,
   getCategorias: getCategorias
 }
+*/
