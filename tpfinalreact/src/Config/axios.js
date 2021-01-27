@@ -12,14 +12,14 @@ instance.interceptors.request.use(
         if(token){
             config.headers["x-access-token"] = token;
         }
-
-
-        return config;
+        
+      
+      return config;
     },
     function(error) {
-        // Do something with request error
-        return Promise.reject(error);
+      // Do something with request error
+      return Promise.reject(error);
     }
-);
+  );
 
 export default instance

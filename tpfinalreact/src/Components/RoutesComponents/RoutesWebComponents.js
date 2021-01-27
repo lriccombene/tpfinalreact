@@ -1,26 +1,29 @@
 import React from "react"
-import {BrowserRouter, Route} from "react-router-dom"
-import LoginPage from "../../Pages/LoginPage";
-import HomePage from "../../Pages/HomePage";
-import ProductsPage from "../../Pages/ProductsPage";
-import HistoryPage from "../../Pages/HistoryPage";
+import {Route} from "react-router-dom"
+import HomePages from '../../Pages/HomePages'
+import LoginPages from '../../Pages/LoginPages'
+import AdminPage from "../../Pages/AdminPage";
 import AboutPage from "../../Pages/AboutPage";
 import ContactPage from "../../Pages/ContactPage";
-import ProductsDetailPage from "../../Pages/ProductsDetailPage";
-import RegisterPage from "../../Pages/RegisterPage";
+import HistoryPage from "../../Pages/HistoryPage";
+import RegistroPages from '../../Pages/RegistroPages'
+import ProductoDetallePages from '../BoxComponents/ProductoDetallePages'
+import HomePage from "../../Pages/HomePage";
 function RoutesWebComponents(){
     return(
         <>
-            <Route path='/' exact component={HomePage}></Route>
+        <Route path="/" exact component={HomePage}/>
 
-            <Route path='/about' exact component={AboutPage}></Route>
-            <Route path='/history' exact component={HistoryPage}></Route>
-            <Route path='/products' exact component={ProductsPage}></Route>
-            <Route path='/products:id' exact component={ProductsDetailPage}></Route>
+            <Route path="/login" exact component={LoginPages}/>
+            <Route path="/registro" exact component={RegistroPages}/>
 
-            <Route path='/register' exact component={RegisterPage}></Route>
-            <Route path='/contact' exact component={ContactPage}></Route>
 
+            <Route path="/productos/:id" exact component={ProductoDetallePages}/>
+
+            <Route path="/admin" exact component={AdminPage}/>
+            <Route path="/about" exact component={AboutPage}/>
+            <Route path="/history" exact component={HistoryPage}/>
+            <Route path="/contact" exact component={ContactPage}/>
 
         </>
     )

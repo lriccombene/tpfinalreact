@@ -3,7 +3,7 @@ import '../../style.css';
 
 import axios from 'axios';
 import ContentComponents from "./ContentComponents";
-import {getProductos,getProductosTop} from "../../Services/ProductosServices";
+import {getProductoTop} from "../../Services/ProductosServices";
 
 const api = axios.create({
     baseURL:'http://localhost:3000/products',
@@ -16,52 +16,36 @@ function BoxComponents(props) {
     const [buscar,setBuscar] = useState("");
     const [loading,setLoading] = useState(true);
     const [tbox,setTbox] = useState('tbox');
-
+    const [top, setTop]=useState(props.top);
     useEffect(
 () => {
     async function fetchData() {
         setLoading(true);
-        const response = await getProductos()
-        //console.log("Data",response)
+        const response = await getProductoTop()
+        console.log(response.data.docs[0])
         const result=[];
-        if(props.top ==='1'){
-            //console.log( response.data.docs[1])
-            result.push( response.data.docs[0])
-            result.push(response.data.docs[1])
-            result.push(response.data.docs[3])
+       /* if(top ===1){
+            result.push(response.data.docs[0]);
+            result.push(response.data.docs[1]);
+            result.push(response.data.docs[2]);
             setProductos(result);
-        }else if(props.top ==='2'){
-            //console.log( response.data.docs[1])
-            result.push( response.data.docs[4])
-            result.push(response.data.docs[5])
-            result.push(response.data.docs[6])
+        }else if(top ===2){
+            result.push(response.data.docs[3]);
+            result.push(response.data.docs[4]);
+            result.push(response.data.docs[5]);
             setProductos(result);
-        }else if(props.top ==='3'){
-            //console.log( response.data.docs[1])
-            result.push( response.data.docs[5])
-            result.push(response.data.docs[6])
-            result.push(response.data.docs[7])
+        }else if(top ===3){
+            result.push(response.data.docs[6]);
+            result.push(response.data.docs[7]);
+            result.push(response.data.docs[8]);
             setProductos(result);
-        }else if(props.top ==='4'){
-            //console.log( response.data.docs[1])
-            result.push( response.data.docs[8])
-            result.push(response.data.docs[9])
-            result.push(response.data.docs[10])
+        }else if(top === 4){
+            result.push(response.data.docs[9]);
+            result.push(response.data.docs[10]);
+            result.push(response.data.docs[11]);
             setProductos(result);
-        }
-       // console.log(result)
-        /*}else if(){
-            setProductos(response.data.docs);
-        }else{
         }*/
-
-
-
-
-        //setProductos(response.data.docs);
-
-
-
+        setProductos(result);
         setLoading(false);
     }
     fetchData();
