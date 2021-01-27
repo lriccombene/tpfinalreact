@@ -31,7 +31,7 @@ function LoginPages(){
                 localStorage.setItem("rol",rol)
 
                 setAlert({variant:"success",text:"Bienvenido/a"})
-                history.push("/")
+                //history.push("/")
             }else{
                 setAlert({variant:"danger",text:"Ha ocurrido un error"})
             }

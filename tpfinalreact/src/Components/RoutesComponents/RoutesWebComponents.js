@@ -7,6 +7,8 @@ import AboutPage from "../../Pages/AboutPage";
 import ContactPage from "../../Pages/ContactPage";
 import HistoryPage from "../../Pages/HistoryPage";
 import RegistroPages from '../../Pages/RegistroPages'
+import CategoriasPage from "../../Pages/CategoriasPage";
+import ProductosPage from "../../Pages/ProductosPage";
 import ProductoDetallePages from '../BoxComponents/ProductoDetallePages'
 import HomePage from "../../Pages/HomePage";
 function RoutesWebComponents(){
@@ -24,6 +26,8 @@ function RoutesWebComponents(){
             <Route path="/about" exact component={AboutPage}/>
             <Route path="/history" exact component={HistoryPage}/>
             <Route path="/contact" exact component={ContactPage}/>
+            <Route path="/categorias" exact component={CategoriasPage}/>
+            <Route path="/productos" exact component={ProductosPage}/>
 
         </>
     )

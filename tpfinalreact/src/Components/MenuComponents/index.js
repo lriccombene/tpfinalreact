@@ -1,6 +1,6 @@
 import React,{Component} from "react";
 import OptionComponents from "./OptionComponents"
-import { Navbar,  Nav} from 'react-bootstrap';
+import {Navbar, Nav} from 'react-bootstrap';
 import NetContext from '../../Context/NetContext'
 import '../../style.css';
 class MenuComponents extends Component{
@@ -20,6 +20,7 @@ class MenuComponents extends Component{
 
                       (localStorage.getItem('rol') == 'web' && context.login )&&
                       <>
+
                         <OptionComponents key="home" option={{label:"Incio",path:"/"}} />
                         <OptionComponents key="home" option={{label:"Historia",path:"/history"}} />
                         <OptionComponents key="home" option={{label:"Quienes Somos",path:"/about"}} />
@@ -33,7 +34,9 @@ class MenuComponents extends Component{
                       (localStorage.getItem('rol') == 'admin' && context.login )&&
                       <>
                         <OptionComponents key="home" option={{label:"Incio",path:"/"}} />
-                        <OptionComponents key="home" option={{label:"Historia",path:"/history"}} />
+                        <OptionComponents key="home" option={{label:"ABM Categoria",path:"/categorias"}} />
+                        <OptionComponents key="home" option={{label:"ABM Productos",path:"/productos"}} />
+                        <OptionComponents key="home" option={{label:"Contacto",path:"/contact"}} />
 
 
                         <Nav.Link onClick={context.logoutUser}>Salir</Nav.Link>

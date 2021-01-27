@@ -1,9 +1,10 @@
 import React,{useState} from "react"
 import {Form,Button,Container} from 'react-bootstrap'
+import Table from 'react-bootstrap/Table'
 import FormGroup from "../Components/Forms/FormGroup"
 import ButtonWithLoading from "../Components/Forms/ButtonWithLoading"
 import {create} from "../Services/UsuariosServices"
-function CategoryPage(){
+function CategoriasPage(){
     const [form,setForm] = useState({name:'',email:'',password:''});
     const [loading,setLoading] = useState(false);
     const handleChange = (e)=>{
@@ -27,17 +28,50 @@ function CategoryPage(){
         e.preventDefault()
     }
     return(
+        <>
         <Container>
             <Form onSubmit={handleSubmit}>
 
                 <FormGroup label="Nombre" type="text" placeholder="Ingrese su nombre" name="name" value={form.name} change={handleChange}/>
-                <FormGroup label="Email" type="email" placeholder="Ingrese su email" name="email" value={form.email} change={handleChange}/>
-                <FormGroup label="Contraseña" type="password" placeholder="Ingrese su contraseña" name="password" value={form.password} change={handleChange}/>
 
-                <ButtonWithLoading text="Registrarse" loading={loading}/>
+
+                <ButtonWithLoading text="Guardar" loading={loading}/>
             </Form>
         </Container>
+            <Container>
+    <Table striped bordered hover>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td colSpan="2">Larry the Bird</td>
+            <td>@twitter</td>
+        </tr>
+        </tbody>
+    </Table>
+            </Container>
+        </>
     )
 
 }
-export default CategoryPage
+export default CategoriasPage
+

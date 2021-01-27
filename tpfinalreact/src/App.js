@@ -45,6 +45,12 @@ class App extends Component{
         },{
           path:'/admin',
           label:'admin'
+        },{
+          path:'/categorias',
+          label:'AMB Categorias'
+        },{
+          path:'/categorias',
+          label:'AMB Productos'
         }
       ],
       usuario:{
