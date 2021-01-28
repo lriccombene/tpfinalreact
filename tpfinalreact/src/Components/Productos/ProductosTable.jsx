@@ -23,6 +23,13 @@ class ProductosTable extends Component {
             <tr>
               <th>ID</th>
               <th>Nombre</th>
+              <th>Sku</th>
+              <th>Categoria</th>
+              <th>price</th>
+              <th>quantity</th>
+              <th>descripcion</th>
+
+
               <th>Acciones</th>
             </tr>
           </thead>
@@ -31,6 +38,13 @@ class ProductosTable extends Component {
               <tr key={producto._id}>
                 <td>{i+1}</td>
                 <td>{producto.name}</td>
+                <td>{producto.sku}</td>
+                <td>{producto.category.name}</td>
+                <td>{producto.price}</td>
+                <td>{producto.quantity}</td>
+                <td>{producto.description}</td>
+
+
 
                 <td>
                   <Link className="btn btn-success" to={`/productosabm/${producto._id}/edit`}>Editar</Link>{' '}
