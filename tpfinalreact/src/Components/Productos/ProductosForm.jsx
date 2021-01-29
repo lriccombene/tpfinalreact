@@ -3,10 +3,14 @@ import axios from "axios"
 import { Redirect } from 'react-router'
 import { Container, Row, Col, Alert, Button,Form, FormGroup, Label, Input } from 'reactstrap'
 import Select from "react-select";
+import ImageUpload from '../Forms/ImageUploadComponent'
+import firebase from 'firebase'
+import * as admin from "firebase-admin";
 
 const Api = require('./Api.js')
 
 class ProductosForm extends Component {
+
   constructor(props) {
     super(props)
     //  const [loading,setLoading] = useState(false);
@@ -24,7 +28,18 @@ class ProductosForm extends Component {
         price:'',
         quantity:'',
         description:'',
-        tags:[]
+        tags:[],
+        images:{
+          fieldname: "",
+          originalname: "",
+          encoding: "",
+          mimetype: "",
+          destination: "",
+          filename: "",
+          path: "",
+          size: ""
+        },
+        uploadValue:0
       },
       redirect: null,
       errors: [],
@@ -32,7 +47,8 @@ class ProductosForm extends Component {
       id: "",
       name: '',
       selectOptionsTag : [],
-      valueTag:[]
+      valueTag:[],
+
     }
 
     this.setName = this.setName.bind(this)
@@ -42,10 +58,15 @@ class ProductosForm extends Component {
     this.setQuantity = this.setQuantity.bind(this)
     this.setDescription = this.setDescription.bind(this)
     this.setTag = this.setTag.bind(this)
+    this.setImage= this.setImage.bind(this)
 
     this.handleSubmit = this.handleSubmit.bind(this)
 
   }
+
+
+
+
   async getOptions(){
     const res = await axios.get('http://localhost:3000/categories')
     const data = res.data
@@ -99,13 +120,41 @@ class ProductosForm extends Component {
     let newVal = event.target.value || ''
     this.setFieldState('description', newVal)
   }
+  config(){
+    var admin = require("firebase-admin");
+
+    var serviceAccount = require('../../Config/serviceAccountKey.json');
+
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount)
+    });
+  }
+
+  setImage(event) {
+
+    this.setFieldState2('picture',event.target.files[0])
+    console.log(this.state.picture)
+
+    let newVal ={
+      fieldname: 'image',
+      originalname: event.target.files[0].name,
+      encoding: "a",
+      mimetype: event.target.files[0].type,
+      destination: "firebase",
+      filename:event.target.files[0].name,
+      path: '/utnimages/'+event.target.files[0].name ,
+      size: event.target.files[0].size
+    }
+
+    this.setFieldState('images', newVal)
+  }
+
   setTag(event) {
-    console.log(event[0].label)
+    //console.log(event[0].label)
     let newVal =[]
     event.map(tag=>
         newVal.push( {name: tag.label})
     )
-
     this.setFieldState('tags', newVal)
   }
 
@@ -117,9 +166,49 @@ class ProductosForm extends Component {
     })
   }
 
+  setFieldState2(field, newVal) {
+    this.setState((prevState) => {
+      let newState = prevState
+      newState[field] = newVal
+      return newState
+    })
+  }
+
+
   handleSubmit (e){
    // this.state.loading(true)
-    console.log(e);
+   // console.log(e);
+    var admin = require("firebase-admin");
+
+    var serviceAccount = require('../../Config/serviceAccountKey.json');
+
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount)
+    });
+
+
+    const ruta = '/utnimages/'+ this.state.picture.name
+    const storageRef = firebase.storage().ref(ruta)
+    const task = storageRef.put(this.state.picture)
+    console.log( task)
+    task.on('state_changed',snapshot=>{
+          let percentage=(snapshot.bytesTransferred/snapshot.totalBytes)* 100;
+
+          this.setState({
+            uploadValue:percentage
+          })},error => {console.log(error.message)},
+        ()=>{
+          this.setState({
+            uploadValue:100,
+            picture: task.snapshot.downloadURL
+          });
+        })
+
+    console.log(this.state.picture)
+
+
+
+
     let producto = {
       name: this.state.producto.name,
       sku: this.state.producto.sku,
@@ -128,6 +217,15 @@ class ProductosForm extends Component {
       quantity: this.state.producto.quantity,
       description: this.state.producto.description,
       tags: this.state.producto.tags,
+      images:{
+        fieldname: this.state.producto.images.fieldname,
+        originalname: this.state.producto.images.originalname,
+        encoding: "a",
+        mimetype: this.state.producto.images.mimetype,
+        destination: this.state.producto.images.destination,
+        filename: this.state.producto.images.filename,
+        path: this.state.producto.images.path,
+        size: this.state.producto.images.size}
     }
     console.log(producto)
     Api.saveProducto(producto)
@@ -214,7 +312,7 @@ class ProductosForm extends Component {
                 <FormGroup>
                   <Label for="tag">Tag </Label>
                   <div>
-                    {console.log(this.state.valueTag)}
+
                     <Select  name="tag" id="tag" options={this.state.selectOptions2} onChange={this.setTag} isMulti />
                     {
                       this.state.valueTag === null ? "" : this.state.valueTag.map(v => <h4>{v.label}</h4>)
@@ -249,6 +347,8 @@ class ProductosForm extends Component {
                   <Label for="name">Descripcion </Label>
                   <Input  type="text" name="description" id="name" value={producto.description} placeholder="Ingrese descripcion" onChange={this.setDescription} />
                 </FormGroup>
+
+                <ImageUpload change={this.setImage} />
 
                 <Button color="success">Guardar</Button>
 
