@@ -31,7 +31,7 @@ function BoxComponents(props) {
             result.push(response.data.docs[3])
             setProductos(result);
         }else if(props.top ==='2'){
-            //console.log( response.data.docs[1])
+            //console.log( response.data.docs[4] +'---'+response.data.docs[5]+ '---'+ response.data.docs[6])
             result.push( response.data.docs[4])
             result.push(response.data.docs[5])
             result.push(response.data.docs[6])
