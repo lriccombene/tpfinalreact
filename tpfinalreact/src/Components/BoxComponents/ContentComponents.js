@@ -1,29 +1,39 @@
-import React from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import '../../style.css';
 import {Link} from "react-router-dom";
-import ProductoComponents from "../ProductoComponents";
+import ProductoComponents from "./ProductoComponents";
 
 import firebase from "firebase";
+import {Button} from "react-bootstrap";
+import {Venta} from "../../Services/VentasServices";
+import NetContext from "../../Context/NetContext";
+import LinkDetalleComponents from "../Forms/LinkDetalleComponents";
 
+function ContentComponents (props){
 
-class ContentComponents extends React.Component{
-    constructor(props){
-        super(props);
-        this.state= {
-            idproduct:'',
-            image:'',
+    const context = useContext(NetContext);
+    const [image,setImage] = useState([]);
+
+    const handleClick = async (e)=>{
+        e.preventDefault();
+        let result = await Venta({
+            "products":[props.product._id]
+        })
+        console.log(result)
+        if(result["data"]["mp"]){
+            window.open(result["data"]["mp"]["body"]["init_point"],'_blank');
         }
-
-        this.getImage(this)
-
-
     }
-    getImage (e) {
+    useEffect(
+        () => {
 
+            async function getImage  (e) {
+        //const conte = useContext(NetContext);
+        //this.state.context=conte;
 
        // console.log(this.props.product.images.filename)
-        console.log( this.props.product.images.filename )
-        const ruta = '/utnimages/'+this.props.product.images.filename
+       // console.log( this.props.product.images.filename )
+        const ruta = '/utnimages/'+props.product.images.filename
         const storageRef = firebase.storage().ref()
 
         storageRef.child(ruta).getDownloadURL()
@@ -39,25 +49,42 @@ class ContentComponents extends React.Component{
                 xhr.open('GET', url);
                 xhr.send();
 
+
                 // Or inserted into an <img> element
-                var img = document.getElementById(this.props.product._id);
+                var img = document.getElementById(props.product._id);
                 img.setAttribute('src', url);
+                setImage(url);
+
             })
             .catch((error) => {
                 // Handle any errors
             });
     }
-    render(){
+            getImage();
+}, []);
+
         return (
             <div className="content">
-                <div className="image"><img id={this.props.product._id} width="324" height="200" alt=""/></div>
-                <h2>{this.props.product.name}</h2>
-                <p>{this.props.product.description}</p>
-                <Link  to={'/productos/'+ this.props.product._id} className="button" >Carrito</Link>
+                <div className="image"><img id={props.product._id} src={image} width="324" height="200" alt=""/></div>
+                <h2>{props.product.name}</h2>
+                <p>{'Precio $' + props.product.price.toFixed(2) }</p>
+                <p>{props.product.description}</p>
+                {
+                    props.verDetalle &&
+
+                    <Link  to={'/productos/'+ props.product._id} className="button" >Detalle</Link>
+                }{props.login &&
+
+                    <LinkDetalleComponents  tostring='/productos/'  product={props.product} click={handleClick} value='comprar' />
+
+
+            }
+
+
             </div>
 
         )
-    }
+
 
 
 }

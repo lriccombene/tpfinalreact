@@ -14,6 +14,7 @@ import ProductosComponents from "../Productos";
 
 import ProductoDetallePages from '../BoxComponents/ProductoDetallePages'
 import HomePage from "../../Pages/HomePage";
+import ProductosBuscarPage from "../../Pages/ProductosBuscarPage";
 
 function RoutesWebComponents(){
     return(
@@ -32,7 +33,7 @@ function RoutesWebComponents(){
             <Route path="/contact" exact component={ContactPage}/>
             <Route path="/categorias" exact component={CategoriasComponents}/>
             <Route path="/productosabm" exact component={ProductosComponents}/>
-
+            <Route path="/productosbuscar" exact component={ProductosBuscarPage}/>
         </>
     )
 }

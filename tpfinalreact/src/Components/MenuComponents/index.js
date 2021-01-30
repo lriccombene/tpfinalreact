@@ -22,6 +22,7 @@ class MenuComponents extends Component{
                       <>
 
                         <OptionComponents key="home" option={{label:"Incio",path:"/"}} />
+                        <OptionComponents key="home" option={{label:"Productos",path:"/productosbuscar"}} />
                         <OptionComponents key="home" option={{label:"Historia",path:"/history"}} />
                         <OptionComponents key="home" option={{label:"Quienes Somos",path:"/about"}} />
                         <OptionComponents key="home" option={{label:"Contacto",path:"/contact"}} />

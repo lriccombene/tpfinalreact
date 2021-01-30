@@ -5,7 +5,7 @@ function HistoryPage (){
 
         return (
             <div id="wrapper">
-
+                <HomePages/>
                 <div>History Estamos en Login</div>
             </div>
         )

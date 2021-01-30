@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from "react"
-import ProductoComponents from "../Components/ProductoComponents"
+import ProductoComponents from "../Components/BoxComponents/ProductoComponents"
 import {getProductos} from "../Services/ProductosServices";
 import {Container,Spinner} from 'react-bootstrap'
 import FormGroup from "../Components/Forms/FormGroup"
@@ -40,8 +40,13 @@ function HomePages(){
                 !loading && 
                 <>
                 
-                    {productos.map(producto=><ProductoComponents key={producto.id} producto={producto} verDetalle={true} />)}
-                </>
+                    {productos.map(producto=>
+
+
+                        <ProductoComponents key={producto.id} producto={producto} verDetalle={true} />)}
+
+
+                    </>
             }
         </Container>
         </>

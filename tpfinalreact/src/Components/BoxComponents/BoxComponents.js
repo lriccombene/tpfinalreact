@@ -4,6 +4,7 @@ import '../../style.css';
 import axios from 'axios';
 import ContentComponents from "./ContentComponents";
 import {getProductos,getProductosTop} from "../../Services/ProductosServices";
+import NetContext from "../../Context/NetContext";
 
 const api = axios.create({
     baseURL:'http://localhost:3000/products',
@@ -71,18 +72,23 @@ function BoxComponents(props) {
     }
 
         return (
-            <div id="three-column" className="container">
+            <NetContext.Consumer>
+                {context=>(
+
+        <div id="three-column" className="container">
                 {products.map((product,i)=>
 
                     <div className={ tbox +(i+1)}>
                         <div className="box-style box-style01">
-                            <ContentComponents product={product}/>
+                            <ContentComponents product={product} verDetalle={true} login={context.login}/>
                         </div>
                     </div>
                 )}
             </div>
-        )
+                )}
 
+            </NetContext.Consumer>
+        )
 
 }
 

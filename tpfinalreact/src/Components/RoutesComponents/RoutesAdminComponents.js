@@ -4,7 +4,7 @@ import HomePages from '../../Pages/HomePages'
 import LoginPages from '../../Pages/LoginPages'
 import CategoriasPage from "../../Pages/CategoriasPage";
 import ProductosPage from "../../Pages/ProductosPage";
-import ProductoComponents from "../ProductoComponents";
+import ProductoComponents from "../BoxComponents/ProductoComponents";
 
 function RoutesAdminComponents(){
     return(

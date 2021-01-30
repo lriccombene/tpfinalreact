@@ -9,7 +9,7 @@ import NetContext from "../Context/NetContext"
 import Alert from "react-bootstrap/Alert";
 
 function AdminPage(){
-    const context = useContext(NetContext);
+        const context = useContext(NetContext);
     const [usuario, setUsuario]= useState(null)
     const [form,setForm] = useState({email:'',password:''});
     const [loading,setLoading] = useState(false);
