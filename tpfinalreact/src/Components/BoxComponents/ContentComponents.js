@@ -67,7 +67,19 @@ function ContentComponents (props){
             <div className="content">
                 <div className="image"><img id={props.product._id} src={image} width="324" height="200" alt=""/></div>
                 <h2>{props.product.name}</h2>
-                <p>{'Precio $' + props.product.price.toFixed(2) }</p>
+
+                {
+                    props.product.oferta &&
+                    <p>{'Oferta $' + props.product.oferta.toFixed(2) }</p>
+
+
+                }{(props.product.oferta < props.product.price )&&
+                <p><strike>{'Precio $' + props.product.price.toFixed(2) }</strike></p>
+                 }
+                {
+                    !props.product.oferta &&
+                    <p>{'Precio $' + props.product.price.toFixed(2)}</p>
+                }
                 <p>{props.product.description}</p>
                 {
                     props.verDetalle &&

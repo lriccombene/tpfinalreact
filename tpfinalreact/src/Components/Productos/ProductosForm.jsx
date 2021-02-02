@@ -29,6 +29,7 @@ class ProductosForm extends Component {
         quantity:'',
         description:'',
         tags:[],
+        oferta:'',
         images:{
           fieldname: "",
           originalname: "",
@@ -59,6 +60,7 @@ class ProductosForm extends Component {
     this.setDescription = this.setDescription.bind(this)
     this.setTag = this.setTag.bind(this)
     this.setImage= this.setImage.bind(this)
+    this.setOferta= this.setOferta.bind(this)
 
     this.handleSubmit = this.handleSubmit.bind(this)
 
@@ -103,6 +105,10 @@ class ProductosForm extends Component {
   setSku(event) {
     let newVal = event.target.value || ''
     this.setFieldState('sku', newVal)
+  }
+  setOferta(event) {
+    let newVal = event.target.value || ''
+    this.setFieldState('oferta', newVal)
   }
   setCategory(event) {
     let newVal = event.target.value || ''
@@ -217,6 +223,7 @@ class ProductosForm extends Component {
       quantity: this.state.producto.quantity,
       description: this.state.producto.description,
       tags: this.state.producto.tags,
+      oferta:this.state.producto.oferta,
       images:{
         fieldname: this.state.producto.images.fieldname,
         originalname: this.state.producto.images.originalname,
@@ -335,6 +342,10 @@ class ProductosForm extends Component {
                 <FormGroup>
                   <Label for="name">Precio</Label>
                   <Input  type="text" name="price" id="price" value={producto.price} placeholder="Ingrese precio" onChange={this.setPrice} />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="oferta">Oferta</Label>
+                  <Input  type="text" name="oferta" id="oferta" value={producto.oferta} placeholder="Ingrese oferta" onChange={this.setOferta} />
                 </FormGroup>
                 <FormGroup>
                   <Label for="name">Cantidad </Label>

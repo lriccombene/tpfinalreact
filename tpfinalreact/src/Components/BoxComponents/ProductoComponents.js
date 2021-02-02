@@ -1,9 +1,12 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import {Link} from 'react-router-dom'
 import { Card,Button } from 'react-bootstrap';
 import {Venta} from '../../Services/VentasServices'
 import NetContext from "../../Context/NetContext";
-function ProductoComponents({producto,verDetalle}) {
+
+import firebase from "firebase";
+
+function ProductoComponents(props) {
 
     const [image,setImage] = useState([]);
 
@@ -11,43 +14,85 @@ function ProductoComponents({producto,verDetalle}) {
     const handleClick = async (e)=>{
         e.preventDefault();
         let result = await Venta({
-            "products":[producto._id]
+            "products":[props.producto._id]
         })
         console.log(result)
         if(result["data"]["mp"]){
             window.open(result["data"]["mp"]["body"]["init_point"],'_blank');
         }
     }
+
+    useEffect(
+        () => {
+
+            async function getImage  (e) {
+                //const conte = useContext(NetContext);
+                //this.state.context=conte;
+
+                // console.log(this.props.product.images.filename)
+                // console.log( this.props.product.images.filename )
+                const ruta = '/utnimages/'+props.producto.images.filename
+                const storageRef = firebase.storage().ref()
+
+                storageRef.child(ruta).getDownloadURL()
+                    .then((url) => {
+                        // `url` is the download URL for 'images/stars.jpg'
+
+                        // This can be downloaded directly:
+                        var xhr = new XMLHttpRequest();
+                        xhr.responseType = 'blob';
+                        xhr.onload = (event) => {
+                            var blob = xhr.response;
+                        };
+                        xhr.open('GET', url);
+                        xhr.send();
+
+
+                        // Or inserted into an <img> element
+                        var img = document.getElementById('a');
+                        img.setAttribute('src', url);
+                        setImage(url);
+
+                    })
+                    .catch((error) => {
+                        // Handle any errors
+                    });
+            }
+            getImage();
+        }, []);
+
+
+
     return(
         <NetContext.Consumer>
             {context=>(
                 <Card style={{ width: '18rem',marginTop:"10px" }}>
-                    <Card.Img variant="top" src={producto.image_path} />
+                    <Card.Img variant="top" src={image} id='a' />
                     <Card.Body>
-                        <Card.Title>{producto.name}</Card.Title>
+                        <Card.Title>{props.producto.name}</Card.Title>
                         <Card.Text>
-                        {producto.price_currency}
+                        {props.producto.price_currency}
 
                         </Card.Text>
                         <Card.Text>
 
-                            {producto.description}
+                            {props.producto.description}
                         </Card.Text>
 
                         {
-                            verDetalle &&
-                            <Link to={"/productos/"+producto.id}><Button variant="primary">Ver Detalle</Button></Link>
+                            props.verDetalle &&
+                            <Link to={"/productos/"+props.producto.id}><Button variant="primary">Ver Detalle</Button></Link>
                         }
 
                         {
-                            !verDetalle &&
+                            !props.verDetalle &&
                             <Card.Text>
 
-                                 {producto.category.name}
+                                 {props.producto.category.name}
                                 </Card.Text> &&
                             <Card.Text>
 
-                                {producto.sku}
+                                {props.producto.sku}
                             </Card.Text>
 
                         }

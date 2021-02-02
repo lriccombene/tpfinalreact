@@ -25,7 +25,8 @@ class ProductosTable extends Component {
               <th>Nombre</th>
               <th>Sku</th>
               <th>Categoria</th>
-              <th>price</th>
+              <th>Price</th>
+              <th>Oferta</th>
               <th>quantity</th>
               <th>descripcion</th>
 
@@ -41,6 +42,7 @@ class ProductosTable extends Component {
                 <td>{producto.sku}</td>
                 <td>{producto.category.name}</td>
                 <td>{producto.price}</td>
+                <td>{producto.oferta}</td>
                 <td>{producto.quantity}</td>
                 <td>{producto.description}</td>
 
