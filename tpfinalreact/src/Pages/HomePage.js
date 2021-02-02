@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {BrowserRouter,Route} from "react-router-dom";
+//import {BrowserRouter,Route} from "react-router-dom";
 
 //import logo from './logo.svg';
 //import './App.css';
@@ -8,7 +8,7 @@ import '../style.css';
 import Logo from "../Components/Logo";
 import PageComponents from "../Components/PageComponents";
 import BoxComponents from "../Components/BoxComponents/BoxComponents.js";
-import Box2Components from "../Components/BoxComponents/Box2Components";
+//import Box2Components from "../Components/BoxComponents/Box2Components";
 /*
 Object { name: "t1@gmail.com", email: "t1@gmail.com", password: "Slam2016" }
  */

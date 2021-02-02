@@ -3,14 +3,10 @@ import '../../style.css';
 
 import axios from 'axios';
 import ContentComponents from "./ContentComponents";
-import {getProductos,getProductosTop} from "../../Services/ProductosServices";
+import {getProductos} from "../../Services/ProductosServices";
 import NetContext from "../../Context/NetContext";
 
-const api = axios.create({
-    baseURL:'http://localhost:3000/products',
 
-
-})
 
 function BoxComponents(props) {
     const [products,setProductos] = useState([]);
@@ -67,9 +63,7 @@ function BoxComponents(props) {
     }
     fetchData();
     }, [buscar],);
-    const handleChange = (e)=>{
-        setBuscar(e.target.value)
-    }
+
 
         return (
             <NetContext.Consumer>

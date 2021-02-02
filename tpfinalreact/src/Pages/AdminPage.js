@@ -1,20 +1,17 @@
 import React,{useContext, useState} from "react"
 import {Form,Container} from 'react-bootstrap'
-import { useHistory } from "react-router-dom";
 import FormGroup from "../Components/Forms/FormGroup"
 import ButtonWithLoading from "../Components/Forms/ButtonWithLoading"
 import {loginAdmin} from "../Services/UsuariosServices"
 import AlertCustom from "../Components/AlertCustom"
 import NetContext from "../Context/NetContext"
-import Alert from "react-bootstrap/Alert";
+
 
 function AdminPage(){
         const context = useContext(NetContext);
-    const [usuario, setUsuario]= useState(null)
     const [form,setForm] = useState({email:'',password:''});
     const [loading,setLoading] = useState(false);
     const [alert,setAlert] = useState({variant:"",text:""})
-    const history = useHistory();
     const handleChange = (e)=>{
         setForm({
             ...form,

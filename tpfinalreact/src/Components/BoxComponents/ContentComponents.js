@@ -1,17 +1,16 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, { useEffect, useState} from 'react'
 import '../../style.css';
 import {Link} from "react-router-dom";
-import ProductoComponents from "./ProductoComponents";
+
 
 import firebase from "firebase";
-import {Button} from "react-bootstrap";
 import {Venta} from "../../Services/VentasServices";
-import NetContext from "../../Context/NetContext";
+
 import LinkDetalleComponents from "../Forms/LinkDetalleComponents";
 
 function ContentComponents (props){
 
-    const context = useContext(NetContext);
+
     const [image,setImage] = useState([]);
 
     const handleClick = async (e)=>{
@@ -28,11 +27,7 @@ function ContentComponents (props){
         () => {
 
             async function getImage  (e) {
-        //const conte = useContext(NetContext);
-        //this.state.context=conte;
 
-       // console.log(this.props.product.images.filename)
-       // console.log( this.props.product.images.filename )
         const ruta = '/utnimages/'+props.product.images.filename
         const storageRef = firebase.storage().ref()
 
@@ -45,6 +40,7 @@ function ContentComponents (props){
                 xhr.responseType = 'blob';
                 xhr.onload = (event) => {
                     var blob = xhr.response;
+                    //console.log(blob)
                 };
                 xhr.open('GET', url);
                 xhr.send();

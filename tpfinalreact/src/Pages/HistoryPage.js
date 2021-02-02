@@ -1,6 +1,6 @@
 import React from 'react'
 import '../style.css';
-import HomePages from "./HomePages";
+//import HomePages from "./HomePages";
 function HistoryPage (){
 
         return (
